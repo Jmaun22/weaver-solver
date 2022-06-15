@@ -7,17 +7,20 @@ import { Button } from 'react-bulma-components';
 
 
 import NavBar from "./componets/navBar"
+import Solver from "./componets/solverArea"
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
       <NavBar/>
+      <Solver/>
+
   
 
 
 
-  <Button color="primary">My Bulma button</Button>
+
 
       </header>
     </div>
