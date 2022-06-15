@@ -3,25 +3,60 @@
 import 'bulma/css/bulma.min.css';
 import { Button, Form, Icon } from 'react-bulma-components';
 import React, { useState } from 'react';
+import { ladderSolver } from '../utils/weaversolver';
 
 
 
 
 const Solver= () => {
-    const [startword, setUsername] = useState('Start word');
-    const [endword, setEmail] = useState('End word');
+    const [startword, setStartWord] = useState('Start word');
+    const [endword, setEndWord] = useState('End word');
+
+
+        const solvingLadder = async (event) => {
+            event.preventDefault();
+
+            console.log('is it even working')
+            alert(`sumbitted ${startword} and ${endword}`);
+            console.log(startword);
+            console.log(endword);
+            console.log('workign')
+
+            const wordlist = ['duck', ]
+
+        console.log(ladderSolver(startword, endword, wordlist));
+     
+
+
+
+
+    }
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        if (name === 'startword') {
+        setStartWord(value);
+        } else if (name === 'endword') {
+            setEndWord(value);
+        }
+
+        console.log(startword);
+
+        console.log(endword);
+
+    }
 
   
     return (
       <form>
         <Form.Field>
           <Form.Label>Start Word</Form.Label>
-          <Form.Control>
+          <Form.Control onChange={handleChange}>
             <Form.Input
               color="success"
               value={startword}
               onChange={(e) => {
-                return setUsername(e.target.value);
+                return setStartWord(e.target.value);
               }}
             />
             <Icon align="left" size="small">
@@ -36,12 +71,12 @@ const Solver= () => {
   
         <Form.Field>
           <Form.Label>End Word</Form.Label>
-          <Form.Control>
+          <Form.Control onChange={handleChange}>
             <Form.Input
               color="danger"
               value={endword}
               onChange={(e) => {
-                return setEmail(e.target.value);
+                return setEndWord(e.target.value);
               }}
             />
             <Icon align="left" size="small">
@@ -59,10 +94,10 @@ const Solver= () => {
      
         <Form.Field kind="group">
           <Form.Control>
-            <Button color="link">Submit</Button>
+            <Button color="link" onClick={solvingLadder}>Submit </Button>
           </Form.Control>
           <Form.Control>
-            <Button color="link" colorVariant="light">
+            <Button color="link" colorVariant="light" >
               Cancel
             </Button>
           </Form.Control>
