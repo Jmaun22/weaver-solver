@@ -3,7 +3,7 @@
 import 'bulma/css/bulma.min.css';
 import { Button, Form, Icon } from 'react-bulma-components';
 import React, { useState } from 'react';
-import { ladderSolver } from '../utils/weaversolver';
+import { ladderSolver, fourLetterWords } from '../utils/weaversolver';
 
 
 
@@ -11,22 +11,44 @@ import { ladderSolver } from '../utils/weaversolver';
 const Solver= () => {
     const [startword, setStartWord] = useState('Start word');
     const [endword, setEndWord] = useState('End word');
+    const [wordList, setWordList] = useState([
+        {
+            id: 'a',
+            name: 'Robin',
+          },
+          {
+            id: 'b',
+            name: 'Dennis',
+          },
+    ]);
 
-
+  
         const solvingLadder = async (event) => {
             event.preventDefault();
 
             console.log('is it even working')
             alert(`sumbitted ${startword} and ${endword}`);
-            console.log(startword);
-            console.log(endword);
-            console.log('workign')
-
-            const wordlist = ['duck', ]
-
-        console.log(ladderSolver(startword, endword, wordlist));
      
 
+        console.log(ladderSolver(startword, endword, fourLetterWords));
+
+        const answer = ladderSolver(startword, endword, fourLetterWords)
+        console.log('answe' + typeof(answer[0]))
+
+        const answerListString = JSON.stringify(answer[0]);
+        const answerList = answerListString.replace('[', '').replaceAll('"', '').replace(']', '').split(',')
+       console.log("yyo" + answerList);
+
+        console.log(typeof(answerList.split(',')));
+
+
+        const answerItems = answerList.map((item) => 
+            <li>{item}</li>
+        );
+        console.log(answerItems);
+
+        setWordList(answerItems);
+ 
 
 
 
@@ -48,6 +70,8 @@ const Solver= () => {
 
   
     return (
+        <>
+        <div>
       <form>
         <Form.Field>
           <Form.Label>Start Word</Form.Label>
@@ -103,7 +127,25 @@ const Solver= () => {
           </Form.Control>
         </Form.Field>
       </form>
+
+        </div>
+
+           <div>
+        <h1>Word Ladder answers</h1>
+        <ul id='demo'>
+        {wordList.map((item) => (
+        <li key={item.id}>{item.name}</li>
+      ))}
+
+        </ul>
+      </div>
+      </>
     );
+    
+
+ 
+
+ 
   }
 
 
