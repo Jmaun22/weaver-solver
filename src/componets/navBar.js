@@ -15,7 +15,7 @@ class MenuNavbar extends Component {
         <Navbar color="info" fixed="top">
           <Navbar.Brand>
             <Navbar.Item renderAs="a" href="/">
-              <img src="https://i.imgur.com/9jQaBuq.png" alt="Dew Ventures" />
+              <img src="images/weaverbird.png" alt="Dew Ventures" />
             </Navbar.Item>
             <Navbar.Burger />
           </Navbar.Brand>

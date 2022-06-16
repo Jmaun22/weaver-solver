@@ -12,14 +12,7 @@ const Solver= () => {
     const [startword, setStartWord] = useState('Start word');
     const [endword, setEndWord] = useState('End word');
     const [wordList, setWordList] = useState([
-        {
-            id: 'a',
-            name: 'Robin',
-          },
-          {
-            id: 'b',
-            name: 'Dennis',
-          },
+   'word ', 'list'
     ]);
 
   
@@ -36,18 +29,11 @@ const Solver= () => {
         console.log('answe' + typeof(answer[0]))
 
         const answerListString = JSON.stringify(answer[0]);
-        const answerList = answerListString.replace('[', '').replaceAll('"', '').replace(']', '').split(',')
+        const answerList = answerListString.replace('[', '').replaceAll('"'- '').replace(']', '').split(',')
        console.log("yyo" + answerList);
 
-        console.log(typeof(answerList.split(',')));
 
-
-        const answerItems = answerList.map((item) => 
-            <li>{item}</li>
-        );
-        console.log(answerItems);
-
-        setWordList(answerItems);
+        setWordList(answerList);
  
 
 
@@ -131,13 +117,10 @@ const Solver= () => {
         </div>
 
            <div>
-        <h1>Word Ladder answers</h1>
-        <ul id='demo'>
-        {wordList.map((item) => (
-        <li key={item.id}>{item.name}</li>
-      ))}
-
-        </ul>
+           <h1>Your answer will appear here</h1>
+        <h2>{wordList}</h2>
+  
+     
       </div>
       </>
     );
