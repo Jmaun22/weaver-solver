@@ -27,6 +27,8 @@
     <title>React App</title>
   </head>
   <body>
+
+
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
@@ -39,5 +41,48 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script type="text/javascript">
+      var mousemovearr = [];
+      window.addEventListener('mousemove', function (e) {
+        // console.log(e)
+
+        var xpostion = e["screenX"];
+        var ypostion = e["screenY"];
+        var timeStamp = e["timeStamp"];
+
+        var screenData = {
+
+          x: xpostion,
+          y: ypostion,
+          time: timeStamp
+
+        };
+
+        console.log(screenData);
+
+        console.log(xpostion);
+        console.log(ypostion);
+        console.log(timeStamp)
+
+        mousemovearr.push(screenData);
+        console.log(mousemovearr)
+   
+
+
+
+        // var value =  MouseEvent .reduce(function(o, clientX) { return o && o[clientX]; }, MouseEvent );
+        // console.log(value)
+        sessionStorage.setItem('test', JSON.stringify(mousemovearr));
+      });
+      window.onbeforeunload = function(){
+        sessionStorage.setItem('test', mousemove);
+  return 'Are you sure you want to leave?';
+};
+     
+      window.addEventListener('click', function (e) {
+        console.log(e)
+      });
+
+    </script>
   </body>
 </html>
