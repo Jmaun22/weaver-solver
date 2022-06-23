@@ -4,6 +4,7 @@ import 'bulma/css/bulma.min.css';
 import { Button, Form, Icon } from 'react-bulma-components';
 import React, { useState } from 'react';
 import { ladderSolver, fourLetterWords } from '../utils/weaversolver';
+import API from '../utils/API';
 
 
 
@@ -12,9 +13,39 @@ const Solver= () => {
     const [startword, setStartWord] = useState('Start word');
     const [endword, setEndWord] = useState('End word');
     const [wordList, setWordList] = useState([
+   
    'word ', 'list'
     ]);
 
+    // APi call
+    const [result, setResult] = useState('');
+    const searchapi = (query) =>
+    API.search(query)
+      .then((res) => setResult(res.data[0].mousehover))
+      .catch((err) => console.log(err));
+
+      // api click handler
+
+      const data = {
+        mousehover: `${sessionStorage.getItem('test')}`
+      }
+
+
+      const handleAPICall = (e) => {
+        console.log('clicked api')
+        e.preventDefault();
+        // searchapi();
+        postapi(data)
+
+        console.log('I think it worked')
+      };
+
+      // post api 
+
+      const postapi = (data) => 
+      API.postit(data)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   
         const solvingLadder = async (event) => {
             event.preventDefault();
@@ -26,7 +57,7 @@ const Solver= () => {
         console.log(ladderSolver(startword, endword, fourLetterWords));
 
         const answer = ladderSolver(startword, endword, fourLetterWords)
-        console.log('answe' + typeof(answer[0]))
+        console.log('answer' + typeof(answer[0]))
 
         const answerListString = JSON.stringify(answer[0]);
         const answerList = answerListString.replace('[', '').replaceAll('"'- '').replace(']', '').split(',')
@@ -58,6 +89,8 @@ const Solver= () => {
     return (
         <>
         <div>
+        <h1>{result}word</h1>
+        <button onClick={handleAPICall}>Search</button>
       <form>
         <Form.Field>
           <Form.Label>Start Word</Form.Label>
