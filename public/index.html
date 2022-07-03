@@ -50,17 +50,25 @@
     <script type="text/javascript">
       var mousemovearr = [];
       window.addEventListener('mousemove', function (e) {
-        // console.log(e)
+        console.log("this is what is being captured");
+        console.log(window.innerWidth)
+        console.log(window.innerHeight)
 
         var xpostion = e["screenX"];
         var ypostion = e["screenY"];
         var timeStamp = e["timeStamp"];
+        var cpuData = e["view"]["clientInformation"]["userAgent"];
+        var windowHeight = window.innerHeight;
+        var windowWidth = window.innerWidth
 
         var screenData = {
 
           x: xpostion,
           y: ypostion,
-          time: timeStamp
+          time: timeStamp,
+          cpuData: cpuData,
+          windowHeight: windowHeight,
+          windowWidth: windowWidth
 
         };
         // console.log(screenData);
